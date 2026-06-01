@@ -1,0 +1,14 @@
+2026-06-01 16:04:32,058 - INFO - Iniciando validacion de data/processed/02_bank_clean.csv
+2026-06-01 16:04:32,062 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:13:44,992 - INFO - Iniciando validacion de data/processed/02_bank_clean.csv
+2026-06-01 16:13:44,996 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:13:57,533 - INFO - Iniciando validacion de data/processed/02_bank_ingested.csv
+2026-06-01 16:13:57,538 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:14:09,386 - INFO - Iniciando validacion de data/processed/02_bank_ingested.csv
+2026-06-01 16:14:09,391 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:14:31,062 - INFO - Iniciando validacion de data/processed/02_bank_ingested.csv
+2026-06-01 16:14:31,067 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:21:12,310 - INFO - Iniciando validacion de data/processed/02_bank_ingested.csv
+2026-06-01 16:21:12,315 - INFO - Validacion completada. Errores: 1
+2026-06-01 16:23:12,563 - INFO - Iniciando validacion de data/processed/02_bank_clean.csv
+2026-06-01 16:23:12,568 - INFO - Validacion completada. Errores: 1

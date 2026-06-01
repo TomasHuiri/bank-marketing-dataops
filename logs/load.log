@@ -1,0 +1,4 @@
+2026-06-01 16:25:39,643 - INFO - Iniciando carga de 11162 registros desde data/processed/02_bank_clean.csv
+2026-06-01 16:25:39,650 - INFO - Tabla 'clientes' creada o verificada
+2026-06-01 16:25:40,560 - INFO - Carga completada exitosamente: 11162 registros
+2026-06-01 16:25:40,561 - INFO - Conexion a base de datos cerrada

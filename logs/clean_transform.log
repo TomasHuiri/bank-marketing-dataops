@@ -1,0 +1,49 @@
+2026-06-01 15:59:14,582 - ERROR - Error en limpieza/transformacion: [Errno 2] No such file or directory: 'data/processed/02_bank_ingested.csv'
+2026-06-01 16:03:45,644 - INFO - Datos cargados: 11162 filas, 17 columnas
+2026-06-01 16:03:45,655 - INFO - Columna job: 'unknown' reemplazados por 'management'
+2026-06-01 16:03:45,660 - INFO - Columna education: 'unknown' reemplazados por 'secondary'
+2026-06-01 16:03:45,664 - INFO - Columna contact: 'unknown' reemplazados por 'cellular'
+2026-06-01 16:03:45,667 - INFO - Columna poutcome: 'unknown' reemplazados por 'failure'
+2026-06-01 16:03:45,671 - INFO - Variable 'deposit' convertida a numerica (1/0)
+2026-06-01 16:03:45,672 - INFO - Columna default convertida a numerica
+2026-06-01 16:03:45,673 - INFO - Columna housing convertida a numerica
+2026-06-01 16:03:45,674 - INFO - Columna loan convertida a numerica
+2026-06-01 16:03:45,684 - INFO - One-Hot Encoding aplicado. Nuevas dimensiones: (11162, 39)
+2026-06-01 16:03:45,687 - INFO - Variables numericas escaladas: ['age', 'balance', 'duration', 'campaign', 'pdays', 'previous']
+2026-06-01 16:03:45,906 - INFO - Dataset limpio guardado en: data/processed/02_bank_clean.csv
+2026-06-01 16:14:27,442 - INFO - Datos cargados: 11162 filas, 17 columnas
+2026-06-01 16:14:27,446 - INFO - Columna job: 'unknown' reemplazados por 'management'
+2026-06-01 16:14:27,449 - INFO - Columna education: 'unknown' reemplazados por 'secondary'
+2026-06-01 16:14:27,452 - INFO - Columna contact: 'unknown' reemplazados por 'cellular'
+2026-06-01 16:14:27,454 - INFO - Columna poutcome: 'unknown' reemplazados por 'failure'
+2026-06-01 16:14:27,456 - INFO - Variable 'deposit' convertida a numerica (1/0)
+2026-06-01 16:14:27,457 - INFO - Columna default convertida a numerica
+2026-06-01 16:14:27,457 - INFO - Columna housing convertida a numerica
+2026-06-01 16:14:27,458 - INFO - Columna loan convertida a numerica
+2026-06-01 16:14:27,467 - INFO - One-Hot Encoding aplicado. Nuevas dimensiones: (11162, 39)
+2026-06-01 16:14:27,471 - INFO - Variables numericas escaladas: ['age', 'balance', 'duration', 'campaign', 'pdays', 'previous']
+2026-06-01 16:14:27,651 - INFO - Dataset limpio guardado en: data/processed/02_bank_clean.csv
+2026-06-01 16:20:58,814 - INFO - Datos cargados: 11162 filas, 17 columnas
+2026-06-01 16:20:58,818 - INFO - Columna job: 'unknown' reemplazados por 'management'
+2026-06-01 16:20:58,821 - INFO - Columna education: 'unknown' reemplazados por 'secondary'
+2026-06-01 16:20:58,825 - INFO - Columna contact: 'unknown' reemplazados por 'cellular'
+2026-06-01 16:20:58,827 - INFO - Columna poutcome: 'unknown' reemplazados por 'failure'
+2026-06-01 16:20:58,830 - INFO - Variable 'deposit' convertida a numerica (1/0)
+2026-06-01 16:20:58,830 - INFO - Columna default convertida a numerica
+2026-06-01 16:20:58,831 - INFO - Columna housing convertida a numerica
+2026-06-01 16:20:58,832 - INFO - Columna loan convertida a numerica
+2026-06-01 16:20:58,842 - INFO - One-Hot Encoding aplicado. Nuevas dimensiones: (11162, 39)
+2026-06-01 16:20:58,846 - INFO - Variables numericas escaladas: ['age', 'balance', 'duration', 'campaign', 'pdays', 'previous']
+2026-06-01 16:20:59,057 - INFO - Dataset limpio guardado en: data/processed/02_bank_clean.csv
+2026-06-01 16:23:03,841 - INFO - Datos cargados: 11162 filas, 17 columnas
+2026-06-01 16:23:03,844 - INFO - Columna job: 'unknown' reemplazados por 'management'
+2026-06-01 16:23:03,848 - INFO - Columna education: 'unknown' reemplazados por 'secondary'
+2026-06-01 16:23:03,852 - INFO - Columna contact: 'unknown' reemplazados por 'cellular'
+2026-06-01 16:23:03,854 - INFO - Columna poutcome: 'unknown' reemplazados por 'failure'
+2026-06-01 16:23:03,856 - INFO - Variable 'deposit' convertida a numerica (1/0)
+2026-06-01 16:23:03,857 - INFO - Columna default convertida a numerica
+2026-06-01 16:23:03,858 - INFO - Columna housing convertida a numerica
+2026-06-01 16:23:03,858 - INFO - Columna loan convertida a numerica
+2026-06-01 16:23:03,870 - INFO - One-Hot Encoding aplicado. Nuevas dimensiones: (11162, 39)
+2026-06-01 16:23:03,874 - INFO - Variables numericas escaladas: ['age', 'balance', 'duration', 'campaign', 'pdays', 'previous']
+2026-06-01 16:23:04,178 - INFO - Dataset limpio guardado en: data/processed/02_bank_clean.csv

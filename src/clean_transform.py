@@ -5,6 +5,9 @@ import os
 import logging
 from sklearn.preprocessing import StandardScaler
 
+# Crear carpeta logs si no existe
+os.makedirs('logs', exist_ok=True)
+
 # Configuracion del sistema de logs
 logging.basicConfig(
     filename='logs/clean_transform.log',
@@ -15,42 +18,27 @@ logging.basicConfig(
 def clean_and_transform(input_path, output_path):
     """
     Limpia y transforma el dataset bancario.
-    
-    Operaciones realizadas:
-    1. Reemplaza valores 'unknown' por la moda de cada columna
-    2. Convierte variable objetivo 'deposit' a numerica (yes=1, no=0)
-    3. Convierte otras columnas binarias (yes/no) a numericas
-    4. Aplica One-Hot Encoding a variables categoricas
-    5. Escala variables numericas con StandardScaler
-    
-    Parametros:
-    input_path (str): Ruta del archivo a procesar
-    output_path (str): Ruta donde se guardara el resultado
-    
-    Retorna:
-    bool: True si el proceso fue exitoso
     """
     try:
         # 1. Cargar datos
         df = pd.read_csv(input_path)
         logging.info(f"Datos cargados: {df.shape[0]} filas, {df.shape[1]} columnas")
+        print(f"[OK] Datos cargados: {df.shape[0]} filas")
         
         # 2. Reemplazar 'unknown' por NaN y luego por la moda
         columnas_categoricas = ['job', 'education', 'contact', 'poutcome']
         for col in columnas_categoricas:
             if col in df.columns:
-                # Reemplazar 'unknown' por NaN
                 df[col] = df[col].replace('unknown', np.nan)
-                # Calcular la moda (valor mas frecuente) ignorando NaN
                 moda = df[col].mode()[0] if not df[col].mode().empty else 'missing'
-                # Llenar NaN con la moda
                 df[col] = df[col].fillna(moda)
                 logging.info(f"Columna {col}: 'unknown' reemplazados por '{moda}'")
         
-        # 3. Convertir variable objetivo 'deposit' a numerica
+        # 3. Convertir variable objetivo 'deposit' a numerica (¡IMPORTANTE!)
         if 'deposit' in df.columns:
             df['deposit'] = df['deposit'].map({'yes': 1, 'no': 0})
             logging.info("Variable 'deposit' convertida a numerica (1/0)")
+            print("[OK] 'deposit' convertida: yes=1, no=0")
         
         # 4. Convertir otras columnas binarias a numericas
         columnas_binarias = ['default', 'housing', 'loan']
@@ -77,6 +65,10 @@ def clean_and_transform(input_path, output_path):
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
         df.to_csv(output_path, index=False)
         
+        # Verificar que deposit se convirtio correctamente
+        if 'deposit' in df.columns:
+            print(f"[OK] Valores unicos de deposit despues del escalado: {df['deposit'].unique()}")
+        
         print(f"[OK] Limpieza y transformacion completada. Dimensiones: {df.shape}")
         logging.info(f"Dataset limpio guardado en: {output_path}")
         
@@ -88,7 +80,14 @@ def clean_and_transform(input_path, output_path):
         return False
 
 if __name__ == "__main__":
+    # Intentar primero con el archivo ingerido
     archivo_entrada = "data/processed/02_bank_ingested.csv"
+    
+    # Si no existe, usar el original
+    if not os.path.exists(archivo_entrada):
+        print("[INFO] No se encuentra archivo ingerido. Usando archivo original.")
+        archivo_entrada = "data/raw/02_bank.csv"
+    
     archivo_salida = "data/processed/02_bank_clean.csv"
     
     clean_and_transform(archivo_entrada, archivo_salida)

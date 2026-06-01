@@ -3,9 +3,11 @@ import pandas as pd
 import shutil
 import os
 import logging
-from datetime import datetime
 
-# Configuracion del sistema de logs
+# PRIMERO: Crear la carpeta logs si no existe
+os.makedirs('logs', exist_ok=True)
+
+# SEGUNDO: Configurar el logging (AHORA la carpeta ya existe)
 logging.basicConfig(
     filename='logs/ingest.log',
     level=logging.INFO,

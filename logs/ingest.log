@@ -1,0 +1,15 @@
+2026-06-01 15:58:42,015 - ERROR - Error en ingesta: No se encuentra el archivo: data/raw/02_bank.csv
+2026-06-01 15:58:55,833 - ERROR - Error en ingesta: No se encuentra el archivo: data/raw/02_bank.csv
+2026-06-01 16:00:51,422 - ERROR - Error en ingesta: No se encuentra el archivo: data/raw/02_bank.csv
+2026-06-01 16:03:39,141 - INFO - Ingesta exitosa: data/raw/02_bank.csv -> data/processed/02_bank_ingested.csv
+2026-06-01 16:03:39,142 - INFO - Registros copiados: 11162
+2026-06-01 16:03:39,142 - INFO - Columnas del dataset: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
+2026-06-01 16:14:21,830 - INFO - Ingesta exitosa: data/raw/02_bank.csv -> data/processed/02_bank_ingested.csv
+2026-06-01 16:14:21,830 - INFO - Registros copiados: 11162
+2026-06-01 16:14:21,831 - INFO - Columnas del dataset: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
+2026-06-01 16:20:48,630 - INFO - Ingesta exitosa: data/raw/02_bank.csv -> data/processed/02_bank_ingested.csv
+2026-06-01 16:20:48,630 - INFO - Registros copiados: 11162
+2026-06-01 16:20:48,630 - INFO - Columnas del dataset: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
+2026-06-01 16:23:00,073 - INFO - Ingesta exitosa: data/raw/02_bank.csv -> data/processed/02_bank_ingested.csv
+2026-06-01 16:23:00,073 - INFO - Registros copiados: 11162
+2026-06-01 16:23:00,073 - INFO - Columnas del dataset: ['age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'deposit']
