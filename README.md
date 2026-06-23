@@ -2,26 +2,36 @@
 
 ## Descripcion del Proyecto
 
-Este proyecto implementa un pipeline completo de DataOps para el dataset 
-"Bank Marketing" del caso de estudio N°2. El objetivo es procesar y 
-preparar los datos para un modelo de Machine Learning que prediga la 
-probabilidad de que un cliente suscriba un deposito a plazo.
+Este proyecto implementa un pipeline completo de DataOps para el dataset "Bank Marketing" del caso de estudio N°2. El objetivo es procesar y preparar los datos para un modelo de Machine Learning que prediga la probabilidad de que un cliente suscriba un depósito a plazo.
 
+Mejoras respecto al código anterior:
+
+Código más limpio y modular, con comentarios explicativos en cada sección
+
+Validaciones más robustas adaptadas específicamente al caso Bank Marketing
+
+Manejo de valores 'unknown' mediante imputación por moda
+
+Escalado de variables numéricas con StandardScaler
+
+Logs detallados para trazabilidad de cada etapa
+
+Reportes automáticos de validación y carga
 ## Estructura del Proyecto
 
 bank-marketing-dataops/
 ├── data/
-│ ├── raw/ # Datos originales (sin modificar)
-│ ├── processed/ # Datos procesados (limpios y transformados)
-│ └── reports/ # Reportes de validacion
+│ ├── raw/ 
+│ ├── processed/ 
+│ └── reports/ 
 ├── src/
-│ ├── ingest.py # Etapa 1: Ingesta de datos
-│ ├── clean_transform.py # Etapa 2: Limpieza y transformacion
-│ ├── validate.py # Etapa 3: Validacion estructural y semantica
-│ └── load.py # Etapa 4: Carga a base de datos
-├── logs/ # Archivos de log de cada etapa
-├── requirements.txt # Dependencias del proyecto
-└── README.md # Este archivo
+│ ├── ingest.py             # Etapa 1: Ingesta de datos
+│ ├── clean_transform.py    # Etapa 2: Limpieza y transformacion
+│ ├── validate.py           # Etapa 3: Validacion estructural y semantica
+│ └── load.py               # Etapa 4: Carga a base de datos
+├── logs/ 
+├── requirements.txt 
+└── README.md 
 
 
 ## Requisitos
@@ -44,8 +54,9 @@ los scripts deben ejecutarse en el siguiente orden;
 Descripcion de las Etapas
 
 1. Ingesta (ingest.py)
-Copia el archivo CSV desde data/raw/ a data/processed/ y registra
-informacion basica del dataset.
+Copia el archivo CSV desde data/raw/ a data/processed/
+
+Registra informacion basica del dataset (número de registros y columnas)
 
 2. Limpieza y Transformacion (clean_transform.py)
 Reemplaza valores 'unknown' por la moda de cada columna
@@ -61,7 +72,7 @@ Verifica valores nulos en columnas criticas
 
 Valida rangos de valores (edad, pdays, campaign)
 
-Genera reporte de errores y advertencias
+Genera reporte de errores y advertencias en data/reports/
 
 4. Carga a Base de Datos (load.py)
 Conecta a base de datos SQLite
@@ -70,5 +81,7 @@ Crea tabla con estructura dinamica
 
 Inserta datos con manejo de errores por fila
 
-Genera reporte de carga
+Genera reporte de carga en data/reports/
+
+
 

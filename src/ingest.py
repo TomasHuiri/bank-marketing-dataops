@@ -1,13 +1,16 @@
 # src/ingest.py
+# Objetivo: Copiar el archivo CSV desde data/raw/ a data/processed/
+# y registrar informacion basica del dataset.
+
 import pandas as pd
 import shutil
 import os
 import logging
 
-# PRIMERO: Crear la carpeta logs si no existe
+# Crear carpeta logs si no existe
 os.makedirs('logs', exist_ok=True)
 
-# SEGUNDO: Configurar el logging (AHORA la carpeta ya existe)
+# Configurar logging
 logging.basicConfig(
     filename='logs/ingest.log',
     level=logging.INFO,

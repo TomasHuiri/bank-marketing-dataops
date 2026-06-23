@@ -1,10 +1,16 @@
 # src/validate.py
+# Objetivo: Validar los datos antes de cargarlos a la base de datos.
+# Validaciones: nulos, tipos de datos, rangos de valores.
+
 import pandas as pd
 import os
 import logging
 from datetime import datetime
 
-# Configuracion del sistema de logs
+# Crear carpeta logs si no existe
+os.makedirs('logs', exist_ok=True)
+
+# Configurar logging
 logging.basicConfig(
     filename='logs/validate.log',
     level=logging.INFO,
@@ -13,14 +19,14 @@ logging.basicConfig(
 
 def validate_data(input_path, report_path):
     """
-    Valida estructural y semanticamente el dataset.
+    Valida estructural y semanticamente el dataset Bank Marketing.
     
     Validaciones estructurales:
     - Verifica que no haya valores nulos en columnas criticas
     - Comprueba tipos de datos correctos
     
     Validaciones semanticas:
-    - Verifica rangos de valores (edad, pdays, campaign)
+    - Verifica rangos de valores (edad: 0-120, pdays >= -1, campaign >= 1)
     - Comprueba que la variable objetivo solo tenga 0 o 1
     
     Parametros:
@@ -37,10 +43,12 @@ def validate_data(input_path, report_path):
         advertencias = []
         
         logging.info(f"Iniciando validacion de {input_path}")
+        print(f"[INFO] Validando {input_path}...")
         
         # ========== VALIDACIONES ESTRUCTURALES ==========
         
         # 1. Verificar valores nulos en columnas criticas
+        #    Estas columnas son esenciales para el modelo
         columnas_criticas = ['age', 'balance', 'duration', 'deposit']
         for col in columnas_criticas:
             if col in df.columns:
@@ -63,26 +71,33 @@ def validate_data(input_path, report_path):
         
         # ========== VALIDACIONES SEMANTICAS ==========
         
-        # 3. Verificar rango de edad
+        # 3. Verificar rango de edad (0-120 años)
         if 'age' in df.columns:
             if (df['age'] < 0).any() or (df['age'] > 120).any():
                 errores.append("Existen edades fuera del rango valido (0-120 anos)")
         
-        # 4. Verificar variable objetivo
+        # 4. Verificar variable objetivo deposit (solo 0 o 1)
         if 'deposit' in df.columns:
             valores_unicos = df['deposit'].unique()
             if not all(v in [0, 1] for v in valores_unicos):
                 errores.append(f"Variable 'deposit' tiene valores invalidos: {valores_unicos}")
         
         # 5. Verificar pdays (dias desde ultimo contacto)
+        #    -1 significa sin contacto previo, es valido
         if 'pdays' in df.columns:
             if (df['pdays'] < -1).any():
                 errores.append("Variable 'pdays' tiene valores menores a -1 (invalido)")
         
-        # 6. Verificar campaign (numero de contactos)
+        # 6. Verificar campaign (numero de contactos en esta campaña)
+        #    Debe ser al menos 1
         if 'campaign' in df.columns:
             if (df['campaign'] < 1).any():
                 advertencias.append("Existen registros con 'campaign' menor a 1")
+        
+        # 7. Verificar balance (puede ser negativo, pero no extremo)
+        if 'balance' in df.columns:
+            if (df['balance'] < -10000).any() or (df['balance'] > 100000).any():
+                advertencias.append("Existen valores de balance extremos (>100k o <-10k)")
         
         # ========== GENERAR REPORTE ==========
         
@@ -106,12 +121,13 @@ def validate_data(input_path, report_path):
         # Guardar reporte como archivo de texto legible
         reporte_txt = report_path.replace('.csv', '.txt')
         with open(reporte_txt, 'w', encoding='utf-8') as f:
-            f.write("REPORTE DE VALIDACION\n")
+            f.write("=" * 50 + "\n")
+            f.write("REPORTE DE VALIDACION - BANK MARKETING\n")
             f.write("=" * 50 + "\n")
             f.write(f"Fecha: {reporte['fecha_validacion']}\n")
             f.write(f"Archivo: {reporte['archivo_validado']}\n")
             f.write(f"Registros: {reporte['total_registros']}\n")
-            f.write(f"Errores: {reporte['errores_encontrados']}\n")
+            f.write(f"Errores criticos: {reporte['errores_encontrados']}\n")
             f.write(f"Advertencias: {reporte['advertencias_encontradas']}\n\n")
             
             if errores:
@@ -142,12 +158,13 @@ def validate_data(input_path, report_path):
         return False
 
 if __name__ == "__main__":
-    # LEER EL ARCHIVO LIMPIO (despues de clean_transform.py)
+    # Validar el archivo LIMPIO (despues de clean_transform.py)
     archivo_entrada = "data/processed/02_bank_clean.csv"
     archivo_reporte = "data/reports/validation_report.csv"
     
-    # Verificar si el archivo limpio existe
+    # Si el archivo limpio no existe, intentar con el ingerido
     if not os.path.exists(archivo_entrada):
-        print("[ERROR] No se encuentra el archivo limpio. Ejecuta clean_transform.py primero.")
-    else:
-        validate_data(archivo_entrada, archivo_reporte)
+        print("[INFO] No se encuentra archivo limpio. Usando archivo ingerido.")
+        archivo_entrada = "data/processed/02_bank_ingested.csv"
+    
+    validate_data(archivo_entrada, archivo_reporte)
